@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Мы вместе ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    margin-top: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.timer {
+    font-size: 28px;
+    margin-top: 20px;
+}
+
+img {
+    width: 240px;
+    border-radius: 20px;
+    margin-top: 30px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+}
+
+/* Сердечки */
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Мы вместе ❤️</h1>
+    <div class="timer" id="timer"></div>
+
+    <img src="photo.jpg" alt="Мы">
+</div>
+
+<script>
+// ДАТА
+const startDate = new Date("2024-10-30 00:00:00");
+
+function updateTimer() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("timer").innerHTML =
+        ${days} дней ${hours} часов ${minutes} минут ${seconds} секунд ❤️;
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+
+
+// АНИМАЦИЯ СЕРДЕЧЕК
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 8000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
