@@ -1,4 +1,3 @@
-```html id="fixclean"
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -20,7 +19,6 @@ body {
 .container {
     text-align: center;
     color: white;
-    max-width: 350px;
 }
 
 h1 {
@@ -32,32 +30,24 @@ h1 {
 }
 
 img {
-    width: 100%;
-    border-radius: 15px;
+    width: 260px;
+    border-radius: 20px;
     margin: 15px 0;
 }
 
-.love-text {
-    font-size: 18px;
-}
-
 #timer {
-    font-size: 18px;
+    font-size: 20px;
 }
 
-/* КНОПКА /
 button {
-    margin-top: 15px;
     padding: 12px 25px;
     font-size: 18px;
     border-radius: 30px;
     border: none;
     background: white;
     color: #ff4d6d;
-    cursor: pointer;
 }
 
-/ ПОПАП /
 .popup {
     display: none;
     position: fixed;
@@ -69,28 +59,6 @@ button {
     padding: 20px;
     border-radius: 15px;
     font-size: 22px;
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.popup.show {
-    display: block;
-    opacity: 1;
-}
-
-/ СЕРДЕЧКИ /
-.heart {
-    position: fixed;
-    bottom: -20px;
-    font-size: 20px;
-    animation: fly 3s linear forwards;
-}
-
-@keyframes fly {
-    to {
-        transform: translateY(-100vh);
-        opacity: 0;
-    }
 }
 </style>
 </head>
@@ -101,58 +69,36 @@ button {
     <h1>Мы вместе ❤️</h1>
     <div class="name">Влад ❤️ Диана</div>
 
-    <img src="https://raw.githubusercontent.com/vladislove2003god-create/love-site/main/photo_2026-04-27_05-59-19.jpg">
-
-    <div class="love-text">Я тебя люблю ❤️❤️❤️❤️❤️</div>
+    <!-- ВСТРОЕННОЕ ФОТО -->
+  <img src="photo_2026-04-27_05-59-19.jpg" style="width:300px; border-radius:15px;">
 
     <div id="timer"></div>
-
     <button onclick="showLove()">Нажми ❤️</button>
 </div>
 
 <div class="popup" id="popup">Я тебя люблю ❤️</div>
 
 <script>
-const startDate = new Date(2024, 9, 30);
+const startDate = new Date("2024-10-30");
 
 function updateTimer() {
     const now = new Date();
     const diff = now - startDate;
 
-    const days = Math.floor(diff / (1000606024));
-    const hours = Math.floor((diff / (10006060)) % 24);
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
     const minutes = Math.floor((diff / (1000*60)) % 60);
 
     document.getElementById("timer").innerText =
         days + " дней " + hours + " часов " + minutes + " минут ❤️";
 }
 
-updateTimer();
 setInterval(updateTimer, 1000);
 
 function showLove() {
-    const popup = document.getElementById("popup");
-    popup.style.display = "block";
-
-    setTimeout(() => popup.classList.add("show"), 10);
-
-    setTimeout(() => {
-        popup.classList.remove("show");
-        setTimeout(() => popup.style.display = "none", 500);
-    }, 2000);
+    document.getElementById("popup").style.display = "block";
 }
-
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 3000);
-}
-
-setInterval(createHeart, 400);
 </script>
 
 </body>
+</html>
