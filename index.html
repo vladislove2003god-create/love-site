@@ -6,51 +6,74 @@
 
 <style>
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: linear-gradient(135deg, #ff7eb3, #ff758c);
-  color: white;
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff6a88, #ff99ac);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+    overflow: hidden;
 }
 
 .container {
-  margin-top: 50px;
+    text-align: center;
+    color: white;
 }
 
 h1 {
-  font-size: 40px;
+    font-size: 40px;
 }
 
 .name {
-  font-size: 20px;
-  margin-bottom: 20px;
+    font-size: 22px;
+    margin-bottom: 10px;
 }
 
 img {
-  width: 300px;
-  border-radius: 15px;
-  margin: 20px 0;
+    width: 260px;
+    border-radius: 20px;
+    margin: 15px 0;
 }
 
 #timer {
-  font-size: 22px;
-  margin-top: 10px;
+    font-size: 20px;
+    margin: 10px 0;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 10px;
-  background: white;
-  color: #ff4d6d;
-  cursor: pointer;
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4d6d;
+    cursor: pointer;
 }
 
 .popup {
-  display: none;
-  margin-top: 20px;
-  font-size: 24px;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: #ff4d6d;
+    padding: 20px 30px;
+    border-radius: 15px;
+    font-size: 22px;
+}
+
+.heart {
+    position: fixed;
+    color: red;
+    font-size: 20px;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    0% {transform: translateY(-10vh);}
+    100% {transform: translateY(110vh);}
 }
 </style>
 </head>
@@ -58,40 +81,54 @@ button {
 <body>
 
 <div class="container">
-  <h1>Мы вместе ❤️</h1>
-  <div class="name">Влад ❤️ Диана</div>
+    <h1>Мы вместе ❤️</h1>
+    <div class="name">Влад ❤️ Диана</div>
 
-  <!-- ВОТ ТВОЁ ФОТО -->
-  <img src="https://i.imgur.com/jxWYmh2.jpeg" alt="Мы">
+    <img src="https://i.imgur.com/jxWYMh2.jpeg">
 
-  <div id="timer"></div>
+    <div id="timer"></div>
 
-  <button onclick="showLove()">Нажми ❤️</button>
+    <button onclick="showLove()">Нажми ❤️</button>
+</div>
 
-  <div class="popup" id="popup">Я тебя люблю ❤️</div>
+<div class="popup" id="popup">
+    Я тебя люблю ❤️
 </div>
 
 <script>
-// дата начала (измени если нужно)
+// ДАТА НАЧАЛА (измени если нужно)
 const startDate = new Date("2024-10-30 00:00:00");
 
 function updateTimer() {
-  const now = new Date();
-  const diff = now - startDate;
+    const now = new Date();
+    const diff = now - startDate;
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
 
-  document.getElementById("timer").innerText =
-    days + " дней " + hours + " часов " + minutes + " минут";
+    document.getElementById("timer").innerText =
+        days + " дней " + hours + " часов " + minutes + " минут ❤️";
 }
 
 setInterval(updateTimer, 1000);
+updateTimer();
 
 function showLove() {
-  document.getElementById("popup").style.display = "block";
+    document.getElementById("popup").style.display = "block";
 }
+
+// сердца
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (Math.random()*20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}, 300);
 </script>
 
 </body>
