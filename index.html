@@ -6,105 +6,92 @@
 
 <style>
 body {
-    margin: 0;
-    overflow: hidden;
-    font-family: Arial;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: white;
-    text-align: center;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: white;
 }
 
 .container {
-    margin-top: 80px;
-    position: relative;
-    z-index: 2;
+  margin-top: 50px;
 }
 
 h1 {
-    font-size: 40px;
+  font-size: 40px;
 }
 
-.timer {
-    font-size: 28px;
-    margin-top: 20px;
+.name {
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 img {
-    width: 240px;
-    border-radius: 20px;
-    margin-top: 30px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  width: 300px;
+  border-radius: 15px;
+  margin: 20px 0;
 }
 
-/* Сердечки */
-.heart {
-    position: absolute;
-    color: red;
-    font-size: 20px;
-    animation: fall linear infinite;
+#timer {
+  font-size: 22px;
+  margin-top: 10px;
 }
 
-@keyframes fall {
-    0% {
-        transform: translateY(-10px);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  color: #ff4d6d;
+  cursor: pointer;
+}
+
+.popup {
+  display: none;
+  margin-top: 20px;
+  font-size: 24px;
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="container">
-    <h1>Мы вместе ❤️</h1>
-    <div class="timer" id="timer"></div>
+  <h1>Мы вместе ❤️</h1>
+  <div class="name">Влад ❤️ Диана</div>
 
-    <img src="<photo_2026-04-27_05-59-19">" alt="Мы">
+  <!-- ВОТ ТВОЁ ФОТО -->
+  <img src="https://i.imgur.com/jxWYmh2.jpeg" alt="Мы">
+
+  <div id="timer"></div>
+
+  <button onclick="showLove()">Нажми ❤️</button>
+
+  <div class="popup" id="popup">Я тебя люблю ❤️</div>
 </div>
 
 <script>
-// ДАТА
+// дата начала (измени если нужно)
 const startDate = new Date("2024-10-30 00:00:00");
 
 function updateTimer() {
-    const now = new Date();
-    const diff = now - startDate;
+  const now = new Date();
+  const diff = now - startDate;
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
 
-    document.getElementById("timer").innerHTML =
-        ${days} дней ${hours} часов ${minutes} минут ${seconds} секунд ❤️;
+  document.getElementById("timer").innerText =
+    days + " дней " + hours + " часов " + minutes + " минут";
 }
 
 setInterval(updateTimer, 1000);
-updateTimer();
 
-
-// АНИМАЦИЯ СЕРДЕЧЕК
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (3 + Math.random() * 5) + "s";
-    heart.style.fontSize = (15 + Math.random() * 20) + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 8000);
+function showLove() {
+  document.getElementById("popup").style.display = "block";
 }
-
-setInterval(createHeart, 300);
 </script>
 
 </body>
