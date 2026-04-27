@@ -1,3 +1,5 @@
+}
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,6 +12,7 @@ body {
     height: 100vh;
     background: linear-gradient(135deg, #ff6a88, #ff99ac);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: Arial;
@@ -23,10 +26,12 @@ body {
 
 h1 {
     font-size: 40px;
+    margin-bottom: 5px;
 }
 
 .name {
     font-size: 22px;
+    margin-bottom: 10px;
 }
 
 img {
@@ -35,10 +40,37 @@ img {
     margin: 15px 0;
 }
 
-#timer {
-    font-size: 20px;
+/* ❤️ КРАСИВЫЙ ТАЙМЕР /
+.timer {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    gap: 10px;
 }
 
+.time-box {
+    background: rgba(255,255,255,0.2);
+    padding: 12px;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    min-width: 70px;
+}
+
+.time-box span {
+    display: block;
+}
+
+.number {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 12px;
+}
+
+/ кнопка /
 button {
     padding: 12px 25px;
     font-size: 18px;
@@ -46,8 +78,10 @@ button {
     border: none;
     background: white;
     color: #ff4d6d;
+    margin-top: 10px;
 }
 
+/ попап /
 .popup {
     display: none;
     position: fixed;
@@ -69,36 +103,58 @@ button {
     <h1>Мы вместе ❤️</h1>
     <div class="name">Влад ❤️ Диана</div>
 
-    <!-- ВСТРОЕННОЕ ФОТО -->
-  <img src="photo_2026-04-27_05-59-19.jpg" style="width:300px; border-radius:15px;">
+    <img src="photo_2026-04-27_05-59-19.jpg">
 
-    <div id="timer"></div>
     <button onclick="showLove()">Нажми ❤️</button>
+</div>
+
+<!-- ❤️ НОВЫЙ ТАЙМЕР -->
+<div class="timer">
+    <div class="time-box">
+        <span class="number" id="days">0</span>
+        <span class="label">дней ❤️</span>
+    </div>
+    <div class="time-box">
+        <span class="number" id="hours">0</span>
+        <span class="label">часов</span>
+    </div>
+    <div class="time-box">
+        <span class="number" id="minutes">0</span>
+        <span class="label">минут</span>
+    </div>
 </div>
 
 <div class="popup" id="popup">Я тебя люблю ❤️</div>
 
 <script>
-const startDate = new Date("2024-10-30");
+// фикс даты (лучше для телефонов)
+const startDate = new Date(2024, 9, 30);
 
 function updateTimer() {
     const now = new Date();
     const diff = now - startDate;
 
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const days = Math.floor(diff / (1000606024));
+    const hours = Math.floor((diff / (10006060)) % 24);
     const minutes = Math.floor((diff / (1000*60)) % 60);
 
-    document.getElementById("timer").innerText =
-        days + " дней " + hours + " часов " + minutes + " минут ❤️";
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
 }
 
+updateTimer();
 setInterval(updateTimer, 1000);
 
 function showLove() {
-    document.getElementById("popup").style.display = "block";
+    const popup = document.getElementById("popup");
+    popup.style.display = "block";
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 2000);
 }
 </script>
 
 </body>
-</html>
+</
