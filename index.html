@@ -1,5 +1,4 @@
-}
-```html
+```html id="fixclean"
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -26,12 +25,10 @@ body {
 
 h1 {
     font-size: 40px;
-    margin-bottom: 10px;
 }
 
 .name {
     font-size: 22px;
-    margin-bottom: 10px;
 }
 
 img {
@@ -40,13 +37,11 @@ img {
     margin: 15px 0;
 }
 
-#timer {
+.love-text {
     font-size: 18px;
-    margin-top: 10px;
 }
 
-.love-text {
-    margin-top: 10px;
+#timer {
     font-size: 18px;
 }
 
@@ -118,7 +113,6 @@ button {
 <div class="popup" id="popup">Я тебя люблю ❤️</div>
 
 <script>
-// ДАТА
 const startDate = new Date(2024, 9, 30);
 
 function updateTimer() {
@@ -136,14 +130,11 @@ function updateTimer() {
 updateTimer();
 setInterval(updateTimer, 1000);
 
-// ПОПАП
 function showLove() {
     const popup = document.getElementById("popup");
     popup.style.display = "block";
 
-    setTimeout(() => {
-        popup.classList.add("show");
-    }, 10);
+    setTimeout(() => popup.classList.add("show"), 10);
 
     setTimeout(() => {
         popup.classList.remove("show");
@@ -151,20 +142,17 @@ function showLove() {
     }, 2000);
 }
 
-// СЕРДЕЧКИ
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.innerText = "❤️";
-
     heart.style.left = Math.random() * 100 + "vw";
 
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 3000);
 }
 
 setInterval(createHeart, 400);
 </script>
 
-</body
+</body>
