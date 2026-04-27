@@ -1,8 +1,9 @@
-
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Мы вместе ❤️</title>
 
 <style>
@@ -10,116 +11,125 @@ body {
     margin: 0;
     height: 100vh;
     background: linear-gradient(135deg, #ff6a88, #ff99ac);
-    font-family: Arial, sans-serif;
-    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* центр /
-.container {
+/* Карточка как приложение /
+.app {
+    width: 320px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 20px;
     text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
+/ заголовок /
 h1 {
-    font-size: 38px;
-    margin-bottom: 5px;
+    margin: 0;
+    font-size: 26px;
 }
 
 .name {
-    font-size: 20px;
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 10px;
 }
 
+/ фото /
 img {
-    width: 260px;
+    width: 100%;
     border-radius: 20px;
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
-/ ❤️ КРАСИВЫЙ БОЛЬШОЙ ТАЙМЕР /
+/ таймер /
 .timer {
-    position: fixed;
-    bottom: 30px;
     display: flex;
-    gap: 15px;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
-.box {
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(10px);
-    padding: 15px;
-    border-radius: 20px;
-    text-align: center;
-    min-width: 80px;
+.time-box {
+    flex: 1;
+    margin: 3px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 15px;
+    padding: 10px;
 }
 
 .num {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: bold;
 }
 
 .label {
-    font-size: 13px;
+    font-size: 11px;
+    opacity: 0.8;
 }
 
 / кнопка /
 button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    border-radius: 20px;
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 15px;
     border: none;
     background: white;
     color: #ff4d6d;
+    font-size: 16px;
 }
 
 / попап /
 .popup {
     display: none;
     position: fixed;
-    top: 50%;
+    bottom: 30px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     background: white;
     color: #ff4d6d;
-    padding: 20px;
-    border-radius: 15px;
-    font-size: 20px;
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-size: 16px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="app">
     <h1>Мы вместе ❤️</h1>
     <div class="name">Влад ❤️ Диана</div>
 
     <img src="https://raw.githubusercontent.com/vladislove2003god-create/love-site/main/photo_2026-04-27_05-59-19.jpg">
 
-    <button onclick="showLove()">Нажми ❤️</button>
+    <div class="timer">
+        <div class="time-box">
+            <div class="num" id="d">0</div>
+            <div class="label">дней ❤️</div>
+        </div>
+        <div class="time-box">
+            <div class="num" id="h">0</div>
+            <div class="label">часов</div>
+        </div>
+        <div class="time-box">
+            <div class="num" id="m">0</div>
+            <div class="label">минут</div>
+        </div>
+    </div>
+
+    <button onclick="showLove()">Я тебя люблю ❤️</button>
 </div>
 
-<!-- ❤️ ТАЙМЕР ВНИЗУ -->
-<div class="timer">
-    <div class="box">
-        <div class="num" id="days">0</div>
-        <div class="label">дней ❤️</div>
-    </div>
-    <div class="box">
-        <div class="num" id="hours">0</div>
-        <div class="label">часов</div>
-    </div>
-    <div class="box">
-        <div class="num" id="minutes">0</div>
-        <div class="label">минут</div>
-    </div>
-</div>
-
-<div class="popup" id="popup">Я тебя люблю ❤️</div>
+<div class="popup" id="popup">❤️ И я тебя ❤️</div>
 
 <script>
-// правильная дата
 const startDate = new Date(2024, 9, 30);
 
 function updateTimer() {
@@ -130,20 +140,20 @@ function updateTimer() {
     const hours = Math.floor((diff / (10006060)) % 24);
     const minutes = Math.floor((diff / (1000*60)) % 60);
 
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("d").innerText = days;
+    document.getElementById("h").innerText = hours;
+    document.getElementById("m").innerText = minutes;
 }
 
 updateTimer();
 setInterval(updateTimer, 1000);
 
 function showLove() {
-    const p = document.getElementById("popup");
-    p.style.display = "block";
-    setTimeout(() => p.style.display = "none", 2000);
+    const popup = document.getElementById("popup");
+    popup.style.display = "block";
+    setTimeout(() => popup.style.display = "none", 2000);
 }
 </script>
 
 </body>
-</h
+</htm
