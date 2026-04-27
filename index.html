@@ -1,5 +1,4 @@
-}
-```html
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -11,27 +10,25 @@ body {
     margin: 0;
     height: 100vh;
     background: linear-gradient(135deg, #ff6a88, #ff99ac);
+    font-family: Arial, sans-serif;
+    color: white;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: Arial;
-    overflow: hidden;
 }
 
+/* центр /
 .container {
     text-align: center;
-    color: white;
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 38px;
     margin-bottom: 5px;
 }
 
 .name {
-    font-size: 22px;
-    margin-bottom: 10px;
+    font-size: 20px;
 }
 
 img {
@@ -40,45 +37,40 @@ img {
     margin: 15px 0;
 }
 
-/* ❤️ КРАСИВЫЙ ТАЙМЕР /
+/ ❤️ КРАСИВЫЙ БОЛЬШОЙ ТАЙМЕР /
 .timer {
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
 
-.time-box {
-    background: rgba(255,255,255,0.2);
-    padding: 12px;
-    border-radius: 15px;
-    text-align: center;
+.box {
+    background: rgba(255,255,255,0.25);
     backdrop-filter: blur(10px);
-    min-width: 70px;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    min-width: 80px;
 }
 
-.time-box span {
-    display: block;
-}
-
-.number {
-    font-size: 28px;
+.num {
+    font-size: 32px;
     font-weight: bold;
 }
 
 .label {
-    font-size: 12px;
+    font-size: 13px;
 }
 
 / кнопка /
 button {
-    padding: 12px 25px;
-    font-size: 18px;
-    border-radius: 30px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 20px;
     border: none;
     background: white;
     color: #ff4d6d;
-    margin-top: 10px;
 }
 
 / попап /
@@ -92,7 +84,7 @@ button {
     color: #ff4d6d;
     padding: 20px;
     border-radius: 15px;
-    font-size: 22px;
+    font-size: 20px;
 }
 </style>
 </head>
@@ -103,31 +95,31 @@ button {
     <h1>Мы вместе ❤️</h1>
     <div class="name">Влад ❤️ Диана</div>
 
-    <img src="photo_2026-04-27_05-59-19.jpg">
+    <img src="https://raw.githubusercontent.com/vladislove2003god-create/love-site/main/photo_2026-04-27_05-59-19.jpg">
 
     <button onclick="showLove()">Нажми ❤️</button>
 </div>
 
-<!-- ❤️ НОВЫЙ ТАЙМЕР -->
+<!-- ❤️ ТАЙМЕР ВНИЗУ -->
 <div class="timer">
-    <div class="time-box">
-        <span class="number" id="days">0</span>
-        <span class="label">дней ❤️</span>
+    <div class="box">
+        <div class="num" id="days">0</div>
+        <div class="label">дней ❤️</div>
     </div>
-    <div class="time-box">
-        <span class="number" id="hours">0</span>
-        <span class="label">часов</span>
+    <div class="box">
+        <div class="num" id="hours">0</div>
+        <div class="label">часов</div>
     </div>
-    <div class="time-box">
-        <span class="number" id="minutes">0</span>
-        <span class="label">минут</span>
+    <div class="box">
+        <div class="num" id="minutes">0</div>
+        <div class="label">минут</div>
     </div>
 </div>
 
 <div class="popup" id="popup">Я тебя люблю ❤️</div>
 
 <script>
-// фикс даты (лучше для телефонов)
+// правильная дата
 const startDate = new Date(2024, 9, 30);
 
 function updateTimer() {
@@ -147,14 +139,11 @@ updateTimer();
 setInterval(updateTimer, 1000);
 
 function showLove() {
-    const popup = document.getElementById("popup");
-    popup.style.display = "block";
-
-    setTimeout(() => {
-        popup.style.display = "none";
-    }, 2000);
+    const p = document.getElementById("popup");
+    p.style.display = "block";
+    setTimeout(() => p.style.display = "none", 2000);
 }
 </script>
 
 </body>
-</
+</h
