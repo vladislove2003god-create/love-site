@@ -27,7 +27,6 @@ h1 {
 
 .name {
     font-size: 22px;
-    margin-bottom: 10px;
 }
 
 img {
@@ -38,17 +37,15 @@ img {
 
 #timer {
     font-size: 20px;
-    margin: 10px 0;
 }
 
 button {
     padding: 12px 25px;
     font-size: 18px;
-    border: none;
     border-radius: 30px;
+    border: none;
     background: white;
     color: #ff4d6d;
-    cursor: pointer;
 }
 
 .popup {
@@ -59,21 +56,9 @@ button {
     transform: translate(-50%, -50%);
     background: white;
     color: #ff4d6d;
-    padding: 20px 30px;
+    padding: 20px;
     border-radius: 15px;
     font-size: 22px;
-}
-
-.heart {
-    position: fixed;
-    color: red;
-    font-size: 20px;
-    animation: fall 5s linear infinite;
-}
-
-@keyframes fall {
-    0% {transform: translateY(-10vh);}
-    100% {transform: translateY(110vh);}
 }
 </style>
 </head>
@@ -84,20 +69,17 @@ button {
     <h1>Мы вместе ❤️</h1>
     <div class="name">Влад ❤️ Диана</div>
 
-    <img src="https://i.imgur.com/jxWYMh2.jpeg">
+    <!-- ВСТРОЕННОЕ ФОТО -->
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...">
 
     <div id="timer"></div>
-
     <button onclick="showLove()">Нажми ❤️</button>
 </div>
 
-<div class="popup" id="popup">
-    Я тебя люблю ❤️
-</div>
+<div class="popup" id="popup">Я тебя люблю ❤️</div>
 
 <script>
-// ДАТА НАЧАЛА (измени если нужно)
-const startDate = new Date("2024-10-30 00:00:00");
+const startDate = new Date("2024-10-30");
 
 function updateTimer() {
     const now = new Date();
@@ -112,23 +94,10 @@ function updateTimer() {
 }
 
 setInterval(updateTimer, 1000);
-updateTimer();
 
 function showLove() {
     document.getElementById("popup").style.display = "block";
 }
-
-// сердца
-setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "❤️";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (Math.random()*20 + 10) + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 5000);
-}, 300);
 </script>
 
 </body>
