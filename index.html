@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -11,13 +11,13 @@ body {
     margin: 0;
     height: 100vh;
     background: linear-gradient(135deg, #ff6a88, #ff99ac);
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Карточка как приложение /
+/* карточка /
 .app {
     width: 320px;
     background: rgba(255,255,255,0.15);
@@ -26,26 +26,14 @@ body {
     padding: 20px;
     text-align: center;
     color: white;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-/ заголовок /
-h1 {
-    margin: 0;
-    font-size: 26px;
-}
-
-.name {
-    font-size: 16px;
-    opacity: 0.9;
-    margin-bottom: 10px;
 }
 
 / фото /
 img {
-    width: 100%;
+    width: 260px;
     border-radius: 20px;
-    margin: 10px 0;
+    margin: 10px auto;
+    display: block;
 }
 
 / таймер /
@@ -55,22 +43,36 @@ img {
     margin-top: 10px;
 }
 
-.time-box {
+.flip-box {
     flex: 1;
     margin: 3px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 15px;
-    padding: 10px;
+    text-align: center;
 }
 
-.num {
-    font-size: 22px;
+.flip {
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+}
+
+.flip span {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    font-size: 24px;
     font-weight: bold;
+    transition: transform 0.4s ease;
+}
+
+/ анимация /
+.flip.animate span {
+    transform: translateY(-40px);
 }
 
 .label {
     font-size: 11px;
-    opacity: 0.8;
 }
 
 / кнопка /
@@ -82,7 +84,6 @@ button {
     border: none;
     background: white;
     color: #ff4d6d;
-    font-size: 16px;
 }
 
 / попап /
@@ -96,7 +97,6 @@ button {
     color: #ff4d6d;
     padding: 12px 20px;
     border-radius: 20px;
-    font-size: 16px;
 }
 </style>
 </head>
@@ -104,22 +104,22 @@ button {
 <body>
 
 <div class="app">
-    <h1>Мы вместе ❤️</h1>
-    <div class="name">Влад ❤️ Диана</div>
+    <h2>Мы вместе ❤️</h2>
+    <div>Влад ❤️ Диана</div>
 
     <img src="https://raw.githubusercontent.com/vladislove2003god-create/love-site/main/photo_2026-04-27_05-59-19.jpg">
 
     <div class="timer">
-        <div class="time-box">
-            <div class="num" id="d">0</div>
+        <div class="flip-box">
+            <div class="flip" id="days"><span>0</span></div>
             <div class="label">дней ❤️</div>
         </div>
-        <div class="time-box">
-            <div class="num" id="h">0</div>
+        <div class="flip-box">
+            <div class="flip" id="hours"><span>0</span></div>
             <div class="label">часов</div>
         </div>
-        <div class="time-box">
-            <div class="num" id="m">0</div>
+        <div class="flip-box">
+            <div class="flip" id="minutes"><span>0</span></div>
             <div class="label">минут</div>
         </div>
     </div>
@@ -132,17 +132,31 @@ button {
 <script>
 const startDate = new Date(2024, 9, 30);
 
+function animateChange(id, newValue) {
+    const el = document.getElementById(id);
+    const span = el.querySelector("span");
+
+    if (span.textContent == newValue) return;
+
+    el.classList.add("animate");
+
+    setTimeout(() => {
+        span.textContent = newValue;
+        el.classList.remove("animate");
+    }, 200);
+}
+
 function updateTimer() {
     const now = new Date();
     const diff = now - startDate;
 
-    const days = Math.floor(diff / (1000606024));
-    const hours = Math.floor((diff / (10006060)) % 24);
-    const minutes = Math.floor((diff / (1000*60)) % 60);
+    const d = Math.floor(diff / (1000606024));
+    const h = Math.floor((diff / (10006060)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
 
-    document.getElementById("d").innerText = days;
-    document.getElementById("h").innerText = hours;
-    document.getElementById("m").innerText = minutes;
+    animateChange("days", d);
+    animateChange("hours", h);
+    animateChange("minutes", m);
 }
 
 updateTimer();
