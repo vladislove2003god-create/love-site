@@ -1,3 +1,4 @@
+}
 ```html
 <!DOCTYPE html>
 <html lang="ru">
@@ -20,28 +21,38 @@ body {
 .container {
     text-align: center;
     color: white;
+    max-width: 350px;
 }
 
 h1 {
     font-size: 40px;
+    margin-bottom: 10px;
 }
 
 .name {
     font-size: 22px;
+    margin-bottom: 10px;
 }
 
 img {
-    width: 300px;
+    width: 100%;
     border-radius: 15px;
     margin: 15px 0;
 }
 
 #timer {
-    font-size: 20px;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.love-text {
+    margin-top: 10px;
+    font-size: 18px;
 }
 
 /* КНОПКА /
 button {
+    margin-top: 15px;
     padding: 12px 25px;
     font-size: 18px;
     border-radius: 30px;
@@ -63,7 +74,6 @@ button {
     padding: 20px;
     border-radius: 15px;
     font-size: 22px;
-
     opacity: 0;
     transition: 0.5s;
 }
@@ -96,21 +106,19 @@ button {
     <h1>Мы вместе ❤️</h1>
     <div class="name">Влад ❤️ Диана</div>
 
-    <!-- ФОТО -->
     <img src="https://raw.githubusercontent.com/vladislove2003god-create/love-site/main/photo_2026-04-27_05-59-19.jpg">
+
+    <div class="love-text">Я тебя люблю ❤️❤️❤️❤️❤️</div>
 
     <div id="timer"></div>
 
-    <button onclick="showLove(); playMusic()">Нажми ❤️</button>
+    <button onclick="showLove()">Нажми ❤️</button>
 </div>
 
 <div class="popup" id="popup">Я тебя люблю ❤️</div>
 
-<!-- МУЗЫКА -->
-<audio id="music" src="music.mp3"></audio>
-
 <script>
-// ДАТА (исправлена для iPhone)
+// ДАТА
 const startDate = new Date(2024, 9, 30);
 
 function updateTimer() {
@@ -125,7 +133,6 @@ function updateTimer() {
         days + " дней " + hours + " часов " + minutes + " минут ❤️";
 }
 
-// запуск сразу
 updateTimer();
 setInterval(updateTimer, 1000);
 
@@ -144,11 +151,6 @@ function showLove() {
     }, 2000);
 }
 
-// МУЗЫКА
-function playMusic() {
-    document.getElementById("music").play();
-}
-
 // СЕРДЕЧКИ
 function createHeart() {
     const heart = document.createElement("div");
@@ -165,5 +167,4 @@ function createHeart() {
 setInterval(createHeart, 400);
 </script>
 
-</body>
-</htm
+</body
